@@ -39,7 +39,7 @@ $hotels = [
     ],
 
 ];
-//foreach ($hotels as $hotel) {
+/* foreach ($hotels as $hotel) {
     foreach ($hotel as $key => $value) {
         if (is_bool($value)) {
             if ($value === true) {
@@ -50,7 +50,7 @@ $hotels = [
         }
         echo $key . ": " . $value . "<br>";
     }
-//}
+} */
 
 ?>
 
@@ -62,24 +62,39 @@ $hotels = [
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Php-Hotel</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 
 <body>
-    <div class="container py-5">
-        <div class="row row-cols-5">
+    <div class="container py-5 fw-bold">
+        <div class="row row-cols-5 flex-wrap">
             <?php foreach ($hotels[0] as $key => $value): ?>
-                <?php if (str_contains($key, "_")): ?>
-                    <?php str_replace("_", " ", $key); ?>
-                <?php endif ?>
-            <div class="col">
-                <span>
-                    <?= $key; ?>
-                </span>
-            </div>
+                <div class="col">
+                    <h3>
+                        <?= ucfirst($key) ?>
+                    </h3>
+                </div>
+            <?php endforeach ?>
+            <?php foreach ($hotels as $hotel): ?>
+                <?php foreach ($hotel as $key => $value): ?>
+                    <?php if (is_bool($value)): ?>
+                        <?php if ($value === true): ?>
+                            <?php $value = "Yes"; ?>
+                        <?php else: ?>
+                            <?php $value = "No" ?>
+                        <?php endif ?>
+                    <?php endif ?>
+                    <div class="col">
+                        <?= $value; ?>
+                    </div>
+                <?php endforeach ?>
             <?php endforeach ?>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
